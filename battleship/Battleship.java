@@ -115,6 +115,7 @@ public class Battleship {
 			} else if (gameBoard[row][column] == '-') {
 				System.out.println("PLAYER " + playerNum + " MISSED!");
 				round[row][column] = 'O';
+				gameBoard[row][column] = 'O';
 				validInput = true;
 			} else if (gameBoard[row][column] == 'O' || gameBoard[row][column] == 'X') {
 				System.out.println("You already fired on this spot. Choose different coordinates.");
@@ -122,6 +123,7 @@ public class Battleship {
 			} else if (gameBoard[row][column] == '@') {
 				System.out.println("PLAYER " + playerNum + " HIT PLAYER " + oppNum + "'s SHIP!");
 				round[row][column] = 'X';
+				gameBoard[row][column] = 'X';
 				validInput = true;
 			}
 		} while (validInput == false);
@@ -155,22 +157,22 @@ public class Battleship {
 		char[][] gameBoard1 = gameBoard(player1Input);
 
 		printBattleShip(gameBoard1);
-		/*
+
 		for (int i=0; i<100; i++) {
 			System.out.println("/n");
 		}
-		*/
+
 		System.out.println("PLAYER2, ENTER YOUR SHIPS' COORDINATES.");
 		int[][] player2Input = getPlayerInput(input);
 		char[][] gameBoard2 = gameBoard(player2Input);
 
 		printBattleShip(gameBoard2);
 
-		/*
+
 		for (int i=0; i<100; i++) {
 			System.out.println("/n");
 		}
-		*/
+
 
 		boolean endGame = false;
 		int playerNum = 1;
