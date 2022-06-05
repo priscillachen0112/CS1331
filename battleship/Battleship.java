@@ -159,7 +159,7 @@ public class Battleship {
 		printBattleShip(gameBoard1);
 
 		for (int i=0; i<100; i++) {
-			System.out.println("/n");
+			System.out.println("\n");
 		}
 
 		System.out.println("PLAYER2, ENTER YOUR SHIPS' COORDINATES.");
@@ -170,7 +170,7 @@ public class Battleship {
 
 
 		for (int i=0; i<100; i++) {
-			System.out.println("/n");
+			System.out.println("\n");
 		}
 
 
