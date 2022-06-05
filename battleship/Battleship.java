@@ -57,7 +57,6 @@ public class Battleship {
 				shipNumber++;
 			}
 
-			System.out.println(row + " " + column);
 		} while (shipNumber <= 5);
 
 		/*System.out.println(coordinates);*/
@@ -197,6 +196,7 @@ public class Battleship {
 				playerNum = 1;
 				hitBoard1 = fireMissile(playerNum, input, gameBoard1, gameBoard2, round1, round2);
 				printBattleShip(hitBoard1);
+				System.out.print("\n");
 
 				endGame = endGame(hitBoard1);
 				if (endGame) {
@@ -208,6 +208,7 @@ public class Battleship {
 				playerNum = 2;
 				hitBoard2 = fireMissile(playerNum, input, gameBoard1, gameBoard2, round1, round2);
 				printBattleShip(hitBoard2);
+				System.out.print("\n");
 
 				endGame = endGame(hitBoard2);
 				if (endGame) {
@@ -216,5 +217,30 @@ public class Battleship {
 			}
 			playerNum += 1;
 		}
+		char[][] player1finalboard = round2;
+		char[][] player2finalboard = round1;
+		if (endGame) {
+			for (int i = 0; i < 5; i++) {
+				for (int j = 0; j < 5; j++) {
+					if (gameBoard1[i][j] == '@' && round2[i][j] != 'X') {
+						player1finalboard[i][j] = '@';
+					}
+				}
+			}
+
+			for (int i = 0; i < 5; i++) {
+				for (int j = 0; j < 5; j++) {
+					if (gameBoard2[i][j] == '@' && round1[i][j] != 'X') {
+						player2finalboard[i][j] = '@';
+					}
+				}
+			}
+		}
+		System.out.print("\n");
+		System.out.println("Final boards:");
+		System.out.print("\n");
+		printBattleShip(player1finalboard);
+		System.out.print("\n");
+		printBattleShip(player2finalboard);
 	}
 }
