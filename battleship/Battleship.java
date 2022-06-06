@@ -44,7 +44,7 @@ public class Battleship {
 				validInput = false;
 			}
 			for (int i=0; i<5; i++) {
-				if (coordinates[i][0]==row && coordinates[i][1]==column) {
+				if (row==coordinates[i][0] && column==coordinates[i][1]) {
 					System.out.println("You already have a ship there. Choose different coordinates.");
 					validInput = false;
 				}
@@ -148,7 +148,7 @@ public class Battleship {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Welcome to Battleship!");
 		System.out.print("\n");
-		System.out.println("PLAYER1, ENTER YOUR SHIPS' COORDINATES.");
+		System.out.println("PLAYER 1, ENTER YOUR SHIPS' COORDINATES.");
 		int[][] player1Input = getPlayerInput(input);
 		char[][] gameBoard1 = gameBoard(player1Input);
 
@@ -158,7 +158,7 @@ public class Battleship {
 			System.out.print("\n");
 		}
 
-		System.out.println("PLAYER2, ENTER YOUR SHIPS' COORDINATES.");
+		System.out.println("PLAYER 2, ENTER YOUR SHIPS' COORDINATES.");
 		int[][] player2Input = getPlayerInput(input);
 		char[][] gameBoard2 = gameBoard(player2Input);
 
