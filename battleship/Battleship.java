@@ -1,6 +1,4 @@
-import java.sql.SQLOutput;
-import java.util.*;
-import java.io.*;
+import java.util.Scanner;
 
 public class Battleship {
 	public static char[][] initBoard(int n) {
@@ -37,7 +35,7 @@ public class Battleship {
 		int shipNumber = 1;
 		boolean validInput;
 		do{
-			System.out.println("Enter ship" + shipNumber + " location:");
+			System.out.println("Enter ship " + shipNumber + " location:");
 			int row = input.nextInt();
 			int column = input.nextInt();
 			validInput = true;
@@ -59,7 +57,6 @@ public class Battleship {
 
 		} while (shipNumber <= 5);
 
-		/*System.out.println(coordinates);*/
 		return coordinates;
 	}
 
@@ -150,15 +147,15 @@ public class Battleship {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Welcome to Battleship!");
-		System.out.println(" ");
+		System.out.print("\n");
 		System.out.println("PLAYER1, ENTER YOUR SHIPS' COORDINATES.");
 		int[][] player1Input = getPlayerInput(input);
 		char[][] gameBoard1 = gameBoard(player1Input);
 
 		printBattleShip(gameBoard1);
 
-		for (int i=0; i<100; i++) {
-			System.out.println("\n");
+		for (int i=0; i<2; i++) {
+			System.out.print("\n");
 		}
 
 		System.out.println("PLAYER2, ENTER YOUR SHIPS' COORDINATES.");
@@ -168,8 +165,8 @@ public class Battleship {
 		printBattleShip(gameBoard2);
 
 
-		for (int i=0; i<100; i++) {
-			System.out.println("\n");
+		for (int i=0; i<2; i++) {
+			System.out.print("\n");
 		}
 
 
