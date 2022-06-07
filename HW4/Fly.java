@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class Fly {
     private double mass;
     private double speed;
