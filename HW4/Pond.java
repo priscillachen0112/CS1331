@@ -3,11 +3,11 @@ public class Pond {
         Frog frog1 = new Frog("Peepo");
         Frog frog2 = new Frog("Pepe", 10, 15);
         Frog frog3 = new Frog("Peepaw", 4.6);
-        Frog frog4 = new Frog("Wawa");
+        Frog frog4 = new Frog("Wawa", 12);
 
         Fly fly1 = new Fly(1,3);
         Fly fly2 = new Fly(6);
-        Fly fly3 = new Fly();
+        Fly fly3 = new Fly(2, 4);
 
         frog1.setSpecies("1331 Frogs");
         frog1.toString();
