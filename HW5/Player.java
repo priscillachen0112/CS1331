@@ -8,7 +8,7 @@ public abstract class Player implements Comparable<Player> {
     private String name;
     private int susLevel;
     private boolean frozen;
-    // It's ok to move around elemnts of this array, but taking out Players or
+    // It's ok to move around elements of this array, but taking out Players or
     // manually adding them will result in errors.
     private static Player[] players;
 
@@ -47,6 +47,7 @@ public abstract class Player implements Comparable<Player> {
      * have an emergency meeting.
      */
     //YOUR CODE HERE
+    public abstract void emergencyMeeting();
 
     /**
      * This method is the compareTo method from the Comparable interface.
@@ -54,9 +55,16 @@ public abstract class Player implements Comparable<Player> {
      * @param p this method takes in a Player to compare values to
      * @return int this value will tell you the ordering of 2 Player objects
      */
+    @Override
     public int compareTo(Player p) {
         // YOUR CODE HERE
-        return 0; // delete this once you have implemented this method
+        if (this.susLevel < p.susLevel) {
+            return -1;
+        } else if (this.susLevel > p.susLevel) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     /**
