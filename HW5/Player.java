@@ -5,8 +5,8 @@
  * @version 1.1
  */
 public abstract class Player implements Comparable<Player> {
-    private String name;
-    private int susLevel;
+    protected String name;
+    protected int susLevel;
     private boolean frozen;
     // It's ok to move around elements of this array, but taking out Players or
     // manually adding them will result in errors.
