@@ -28,6 +28,7 @@ public class BlueAstronaut extends Player implements Crewmate {
             double highestSusLevel = (int) Double.NEGATIVE_INFINITY;
             Player highestSusPlayer = null;
             for (Player p : players) {
+                System.out.println(highestSusLevel);
                 if (p != this && !p.isFrozen() && p.getSusLevel() > highestSusLevel) {
                     highestSusLevel = p.getSusLevel();
                     highestSusPlayer = p;
@@ -37,8 +38,6 @@ public class BlueAstronaut extends Player implements Crewmate {
             for (Player q : players) {
                 if (q != highestSusPlayer && q != this && !q.isFrozen() && q.getSusLevel() == highestSusLevel) {
                     highestSusPlayer = null;
-                } else {
-                    break;
                 }
             }
             if (highestSusPlayer != null) {

@@ -27,6 +27,7 @@ public class RedAstronaut extends Player implements Impostor {
             double highestSusLevel = (int) Double.NEGATIVE_INFINITY;
             Player highestSusPlayer = null;
             for (Player p : players) {
+                System.out.println(highestSusLevel);
                 if (p != this && !p.isFrozen() && p.getSusLevel() > highestSusLevel) {
                     highestSusLevel = p.getSusLevel();
                     highestSusPlayer = p;
@@ -34,10 +35,11 @@ public class RedAstronaut extends Player implements Impostor {
             }
 
             for (Player q : players) {
+                //System.out.println(highestSusPlayer);
+                //System.out.println(q);
+                //System.out.println(q != highestSusPlayer);
                 if (q != highestSusPlayer && q != this && !q.isFrozen() && q.getSusLevel() == highestSusLevel) {
                     highestSusPlayer = null;
-                } else {
-                    break;
                 }
             }
             if (highestSusPlayer != null) {
