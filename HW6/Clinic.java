@@ -1,28 +1,27 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.PrintWriter;
 
 public class Clinic {
-    private File patientFile;
-    private int day;
+    public File patientFile;
+    public int day;
 
     public Clinic(File file) {
-        File patientFile = new File(String.valueOf(file));
-        day = 1;
+        this.patientFile = file;
+        this.day = 1;
     }
 
     public Clinic(String fileName) {
-        super();
-        String patientFile = new String(fileName);
-        day = 1;
+        this(new File(fileName));
     }
 
     public String nextDay(File f) throws FileNotFoundException, InvalidPetException {
-        String fileName = new String(String.valueOf(f));
+        String fileName = String.valueOf(f);
         return nextDay(fileName);
     }
 
@@ -48,6 +47,8 @@ public class Clinic {
 
         String output = "";
 
+        Scanner userInput = new Scanner(System.in);
+
         while (index < 5 && fileScan.hasNextLine()) {
             line = fileScan.nextLine();
             tokens = line.split(",");
@@ -60,7 +61,6 @@ public class Clinic {
                 throw new InvalidPetException();
             }
 
-            Scanner userInput = new Scanner(System.in);
             boolean successHealthInput = false;
             boolean successPainLevel = false;
             double initialHealth = 1.0;
@@ -82,7 +82,7 @@ public class Clinic {
             while (!successPainLevel) {
                 try {
                     System.out.println("On a scale of 1 to 10, how much pain is " +
-                                    names[index] + " in right now?\n");
+                                    names[index] + " in right now?");
                     initialPainLevel = userInput.nextInt();
                     successPainLevel = true;
                 } catch (InputMismatchException e) {
@@ -117,17 +117,46 @@ public class Clinic {
             index++;
         }
         day++;
+        userInput.close();
         return output;
      }
 
 
-    public boolean addToFile(String patientInfo, File fileOut) {
+    public boolean addToFile(String patientInfo) {
+        File fileIn = patientFile;
+        Scanner fileScan = null;
+        ArrayList<String> patients = new ArrayList<String>();
+
+        try {
+            fileScan = new Scanner(fileIn);
+            String line = null;
+            while (fileScan.hasNextLine()) {
+                line = fileScan.nextLine();
+                patients.add(line);
+            }
+            fileScan.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        File fileOut = patientFile;
         PrintWriter filePrint = null;
 
         try {
             filePrint = new PrintWriter(fileOut);
-            System.out.println(patientInfo);
-            filePrint.append(patientInfo);
+            String name = patientInfo.substring(0, patientInfo.indexOf(","));
+            for (String patient : patients) {
+                if (patient.contains(name)) {
+                    String additionalRecord = patientInfo.substring(patientInfo.indexOf(",Day"), patientInfo.length());
+                    patient = patient + additionalRecord;
+                }
+                filePrint.println(patient);
+            }
+
+            if (!patients.toString().contains(name)) {
+                filePrint.append(patientInfo);
+            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
             return false;

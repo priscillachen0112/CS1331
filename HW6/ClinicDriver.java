@@ -16,10 +16,8 @@ public class ClinicDriver {
             exception.printStackTrace();
         }
         String[] dayOneAppointments = dayOneReport.split("\\n");
-        File fileOut = new File("PatientsTest.csv");
         for (String appointment : dayOneAppointments) {
-            clinic.addToFile(appointment, fileOut);
-            if (!clinic.addToFile(appointment, fileOut)) {
+            if (!clinic.addToFile(appointment)) {
                 System.out.println("Appointment could not be added to file!");
             }
         }
