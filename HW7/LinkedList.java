@@ -77,29 +77,39 @@ public class LinkedList<T> implements List<T> {
             throw new IllegalArgumentException("Your index is out of the list bounds");
         }
 
-        T removed;
-        Node<T> current = head;
+        Node<T> removed = null;
         if (index == 0) {
-            removed = head.getData();
-            head.setData(head.getNext().getData());
-            head.setNext(head.getNext().getNext());
-        } else if (index == size) {
-            while (current.getNext().getNext() != head) {
+            removed = head;
+            if (size == 1) {
+                head = null;
+                tail = null;
+            } else {
+                head = head.getNext();
+                Node<T> current = head;
+                for (int i=0; i<size-2; i++) {
+                    current = current.getNext();
+                }
+                current.setNext(null);
+                tail = current;
+            }
+        } else if (index == size-1) {
+            removed = tail;
+            Node<T> current = head;
+            for (int i=0; i<size-2; i++) {
                 current = current.getNext();
             }
-            removed = current.getNext().getData();
-            current.setNext(head);
+            current.setNext(null);
+            tail = current;
         } else {
-            for (int i = 1; i < index; i++) {
+            Node<T> current = head;
+            for (int i=0; i<index-1; i++) {
                 current = current.getNext();
             }
-            removed = current.getNext().getData();
+            removed = current.getNext();
             current.setNext(current.getNext().getNext());
         }
-        if (--size == 0) {
-            head = null;
-        }
-        return removed;
+        size--;
+        return removed.getData();
     }
 
     public T remove(T data) {
